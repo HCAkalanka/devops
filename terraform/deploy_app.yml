@@ -1,0 +1,39 @@
+---
+# 1. Backend එක Deploy කිරීම
+- name: Deploy Backend Application
+  hosts: backend
+  become: yes
+  tasks:
+    - name: Stop old backend container (if running)
+      shell: docker stop backend || true
+
+    - name: Remove old backend container
+      shell: docker rm backend || true
+
+    - name: Pull Docker Image
+      shell: docker pull chamod12/car-backend:latest
+
+    - name: Run Backend Container
+      shell: >
+        docker run -d --name backend -p 5000:5000
+        -e MONGODB_URI=mongodb+srv://admin:Chamod12@cluster0.miiguq0.mongodb.net/?appName=Cluster0
+        -e PORT=5000
+        -e JWT_SECRET=supersecretkey123
+        chamod12/car-backend:latest
+
+# 2. Frontend එක Deploy කිරීම
+- name: Deploy Frontend Application
+  hosts: frontend
+  become: yes
+  tasks:
+    - name: Stop old frontend container (if running)
+      shell: docker stop frontend || true
+
+    - name: Remove old frontend container
+      shell: docker rm frontend || true
+
+    - name: Pull Docker Image
+      shell: docker pull chamod12/car-frontend:latest
+
+    - name: Run Frontend Container
+      shell: docker run -d --name frontend -p 5173:5173 chamod12/car-frontend:latest

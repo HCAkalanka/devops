@@ -1,0 +1,33 @@
+services:
+  # Mongo Service එක අපි මැකුවා (දැන් Cloud නිසා)
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      # දැන් මෙයා .env එකෙන් අගය ඇදලා ගන්නවා
+      - MONGODB_URI=${MONGODB_URI}
+      - PORT=${PORT}
+      - JWT_SECRET=${JWT_SECRET}
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_INTERVAL=300
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+# volumes කොටස අවශ්‍ය නෑ
