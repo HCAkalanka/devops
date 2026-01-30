@@ -1,6 +1,7 @@
 ﻿import React, { useState } from "react";
 import { X } from "lucide-react";
 import { assets } from "../assets/assets";
+import api from "../api/http";
 
 const Login = ({ showLogin, setShowLogin, onAuth }) => {
   const [isSignup, setIsSignup] = useState(false);
@@ -21,29 +22,11 @@ const Login = ({ showLogin, setShowLogin, onAuth }) => {
     setMessage("");
     setLoading(true);
     try {
-      const API_BASE = (typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"))
-        ? "http://localhost:5000"
-        : "";
-      const endpoint = `${API_BASE}${isSignup ? "/api/auth/signup" : "/api/auth/login"}`;
       const body = isSignup ? { name, email, password, role } : { email, password };
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      const parseSafe = async () => {
-        const ct = res.headers.get("content-type") || "";
-        if (ct.includes("application/json")) {
-          try { return await res.json(); } catch { }
-        }
-        const text = await res.text();
-        try { return text ? JSON.parse(text) : {}; } catch { return { message: text || res.statusText }; }
-      };
-      const data = await parseSafe();
-      if (!res.ok) {
-        const msg = (data && data.message) || `HTTP ${res.status}`;
-        throw new Error(msg);
-      }
+      const data = await api
+        .post(isSignup ? "/auth/signup" : "/auth/login", body)
+        .then((r) => r.data);
+
       if (data?.token) {
         if (typeof onAuth === "function") onAuth(data.token);
         setMessage(isSignup ? "Account created! You are logged in." : "Login successful!");
@@ -52,7 +35,11 @@ const Login = ({ showLogin, setShowLogin, onAuth }) => {
         setMessage("Success");
       }
     } catch (err) {
-      setError(err.message || "Something went wrong");
+      const msg =
+        err?.response?.data?.message ||
+        err?.message ||
+        "Something went wrong";
+      setError(msg);
     } finally {
       setLoading(false);
     }
