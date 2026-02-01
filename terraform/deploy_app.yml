@@ -1,5 +1,5 @@
 ---
-# 1. Backend එක Deploy කිරීම
+# 1. Backend  Deploy 
 - name: Deploy Backend Application
   hosts: backend
   become: yes
@@ -21,7 +21,7 @@
         -e JWT_SECRET=supersecretkey123
         chamod12/car-backend:latest
 
-# 2. Frontend එක Deploy කිරීම
+# 2. Frontend  Deploy 
 - name: Deploy Frontend Application
   hosts: frontend
   become: yes

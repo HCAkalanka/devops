@@ -1,7 +1,7 @@
 ---
 - name: Install Docker on all Servers
   hosts: all
-  become: yes  # sudo පාවිච්චි කරන්න කියලා කියනවා
+  become: yes  # sudo privileges
 
   tasks:
     - name: Update apt cache

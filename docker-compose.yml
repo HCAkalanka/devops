@@ -1,5 +1,5 @@
 services:
-  # Mongo Service එක අපි මැකුවා (දැන් Cloud නිසා)
+ 
 
   backend:
     build: ./backend
@@ -10,7 +10,7 @@ services:
       - ./backend:/app
       - /app/node_modules
     environment:
-      # දැන් මෙයා .env එකෙන් අගය ඇදලා ගන්නවා
+    
       - MONGODB_URI=${MONGODB_URI}
       - PORT=${PORT}
       - JWT_SECRET=${JWT_SECRET}
@@ -30,4 +30,3 @@ services:
     depends_on:
       - backend
 
-# volumes කොටස අවශ්‍ය නෑ
