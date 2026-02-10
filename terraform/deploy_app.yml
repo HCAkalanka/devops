@@ -36,4 +36,8 @@
       shell: docker pull chamod12/car-frontend:latest
 
     - name: Run Frontend Container
-      shell: docker run -d --name frontend -p 5173:5173 chamod12/car-frontend:latest
+      shell: >
+        docker run -d --name frontend -p 5173:5173
+        -e VITE_API_URL="http://3.238.155.37:5000/api"
+        chamod12/car-frontend:latest
+        -e VITE_API_URL="http://3.238.155.37:5000/api"
