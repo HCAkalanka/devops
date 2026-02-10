@@ -18,8 +18,8 @@ pipeline {
                         script: 'git rev-parse --short=7 HEAD',
                         returnStdout: true
                     ).trim()
-                    echo "ode checked out successfully"
-                    echo " Image tag: ${env.SHORT_COMMIT}"
+                    echo "Code checked out successfully"
+                    echo "Image tag: ${env.SHORT_COMMIT}"
                 }
             }
         }
@@ -55,8 +55,9 @@ pipeline {
         // -------------------------------
         stage('Push Docker Images') {
             steps {
+                // මෙන්න මෙතන තමයි අපි නම වෙනස් කළේ ('cred' -> 'docker-hub-credentials')
                 withCredentials([usernamePassword(
-                    credentialsId: 'cred', 
+                    credentialsId: 'docker-hub-credentials', 
                     usernameVariable: 'DOCKER_USER', 
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
@@ -90,12 +91,12 @@ pipeline {
     // -------------------------------
     post {
         success {
-            echo " Pipeline succeeded!"
+            echo "Pipeline succeeded!"
             echo "Backend image: ${DOCKER_BACKEND_IMAGE}:${env.SHORT_COMMIT}"
             echo "Frontend image: ${DOCKER_FRONTEND_IMAGE}:${env.SHORT_COMMIT}"
         }
         failure {
-            echo "pipeline failed. Check the console output for errors."
+            echo "Pipeline failed. Check the console output for errors."
         }
         always {
             echo "Cleaning up local Docker images (optional)"
