@@ -19,6 +19,9 @@
         -e MONGODB_URI="mongodb+srv://admin:Chamod12@cluster0.miiguq0.mongodb.net/car_rental?retryWrites=true&w=majority&appName=Cluster0"
         -e PORT=5000
         -e JWT_SECRET=supersecretkey123
+        -e CLOUDINARY_CLOUD_NAME="dkcgak6lq"
+        -e CLOUDINARY_API_KEY="952538291321884"
+        -e CLOUDINARY_API_SECRET="nMTrjCRo1Wr-c0e1eMbSbRJof40"
         chamod12/car-backend:latest
 
     # --- Debugging: ඔත්තු බලන කොටස ---
