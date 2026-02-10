@@ -12,3 +12,4 @@ build/
 .terraform/
 terraform/.terraform/
 terraform/.terraform.lock.hcl
+.mongo-data/
