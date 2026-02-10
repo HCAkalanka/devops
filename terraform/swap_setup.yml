@@ -1,0 +1,22 @@
+---
+- name: Add Swap Memory (Prevent Freezing)
+  hosts: jenkins
+  become: true
+  tasks:
+    - name: Create swap file (2GB)
+      command: fallocate -l 2G /swapfile
+      args:
+        creates: /swapfile
+
+    - name: Set permission
+      file:
+        path: /swapfile
+        mode: '0600'
+
+    - name: Setup swap
+      command: mkswap /swapfile
+      when: ansible_swaptotal_mb < 1
+
+    - name: Enable swap
+      command: swapon /swapfile
+      when: ansible_swaptotal_mb < 1
