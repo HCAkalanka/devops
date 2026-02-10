@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // Axios base instance with sensible defaults
 export const api = axios.create({
-  baseURL: (import.meta?.env?.VITE_API_URL || '/api').replace(/\/+$/, ''),
+  // Default to deployed backend if env not provided
+  baseURL: (import.meta?.env?.VITE_API_URL || 'http://3.238.155.37:5000/api').replace(/\/+$/, ''),
   timeout: 15000,
 });
 
