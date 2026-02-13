@@ -10,9 +10,9 @@ pipeline {
     }
 
     stages {
-        // -------------------------------
+       
         // 1. Checkout Code from GitHub
-        // -------------------------------
+       
         stage('SCM Checkout') {
             steps {
                 retry(3) {
@@ -30,9 +30,9 @@ pipeline {
             }
         }
 
-        // -------------------------------
+        
         // 2. Build Docker Images (Frontend & Backend)
-        // -------------------------------
+        
         stage('Build Docker Images') {
             parallel {
                 stage('Backend') {
@@ -60,9 +60,9 @@ pipeline {
             }
         }
 
-        // -------------------------------
+       
         // 3. Push Docker Images to Docker Hub
-        // -------------------------------
+      
         stage('Push Docker Images') {
             steps {
                 withCredentials([usernamePassword(
@@ -91,9 +91,9 @@ pipeline {
             }
         }
 
-        // -------------------------------
+       
         // 4. Deploy to Servers (Ansible)
-        // -------------------------------
+       
         stage('Deploy to Servers') {
             steps {
                 dir('terraform') {

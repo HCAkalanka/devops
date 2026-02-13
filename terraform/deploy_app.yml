@@ -1,5 +1,4 @@
----
-# 1. Backend  Deploy 
+# 1. Backend Deploy
 - name: Deploy Backend Application
   hosts: backend
   become: yes
@@ -13,15 +12,33 @@
     - name: Pull Docker Image
       shell: docker pull chamod12/car-backend:latest
 
+    # --- Debugging: Environment Variables Check ---
     - name: Run Backend Container
       shell: >
         docker run -d --name backend -p 5000:5000
-        -e MONGODB_URI="mongodb+srv://admin:Chamod12@cluster0.abcd.mongodb.net/car_rental?retryWrites=true&w=majority&appName=Cluster0"
+        -e MONGODB_URI="mongodb+srv://admin:Chamod12@cluster0.miiguq0.mongodb.net/car_rental?retryWrites=true&w=majority&appName=Cluster0"
         -e PORT=5000
         -e JWT_SECRET=supersecretkey123
+        -e CLOUDINARY_CLOUD_NAME="dkcgak6lq"
+        -e CLOUDINARY_API_KEY="952538291321884"
+        -e CLOUDINARY_API_SECRET="nMTrjCRo1Wr-c0e1eMbSbRJof40"
         chamod12/car-backend:latest
 
-# 2. Frontend  Deploy 
+    # --- Debugging: Wait and Check Logs ---
+    - name: Wait for Backend to start (15 seconds)
+      pause:
+        seconds: 15
+
+    - name: Get Backend Logs (Debug Info)
+      shell: docker logs --tail 50 backend
+      register: app_logs
+      ignore_errors: yes
+
+    - name: Print Logs to Jenkins Console
+      debug:
+        var: app_logs.stdout_lines
+
+# 2. Frontend Deploy
 - name: Deploy Frontend Application
   hosts: frontend
   become: yes
@@ -40,4 +57,3 @@
         docker run -d --name frontend -p 5173:5173
         -e VITE_API_URL="http://3.238.155.37:5000/api"
         chamod12/car-frontend:latest
-        -e VITE_API_URL="http://3.238.155.37:5000/api"

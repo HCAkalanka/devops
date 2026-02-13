@@ -3,7 +3,7 @@
   hosts: jenkins
   become: true
   tasks:
-    # 1. පරණ ලෙඩ දෙන Jenkins repo files අයින් කරමු (apt update fail වෙන එක නවත්තන්න)
+    # 1. Old Jenkins repo list files
     - name: Clean up old Jenkins repo list files
       file:
         path: "{{ item }}"
@@ -23,7 +23,7 @@
           - gnupg
         state: present
 
-    # 2. Java දාමු
+    # 2. Java Install
     - name: Install Java
       apt:
         name: openjdk-17-jre
@@ -35,7 +35,7 @@
         dest: /usr/share/keyrings/jenkins-keyring.asc
         mode: "0644"
 
-    # 4. Repo එක එකතු කරමු
+    # 4. Repo Add
     - name: Add Jenkins Repo
       apt_repository:
         repo: deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/
