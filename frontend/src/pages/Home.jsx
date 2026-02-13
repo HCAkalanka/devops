@@ -31,7 +31,7 @@ const benefits = [
 ]
 
 const testimonials = [
-  { name: 'Chamod', text: 'Smooth booking and clean car. Highly recommended.', city: 'Colombo' },
+  { name: 'Akalanka', text: 'Smooth booking and clean car. Highly recommended.', city: 'Colombo' },
   { name: 'Shehani', text: 'Price was fair and pickup process quick.', city: 'Galle' },
   { name: 'Ravindu', text: 'Support resolved my date change in minutes.', city: 'Kandy' }
 ]
