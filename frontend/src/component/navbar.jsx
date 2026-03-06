@@ -131,7 +131,8 @@ const Navbar = ({ setShowLogin, authed, onLogout }) => {
               <>
                 <button
                   onClick={() => navigate('/post')}
-                  className="px-3 sm:px-4 py-2 text-xs sm:text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
+                  className="px-3 sm:px-4 py-2 text-xs sm:text-sm text-white rounded-lg transition-colors whitespace-nowrap font-semibold hover:opacity-90"
+                  style={{ background: 'linear-gradient(135deg,#6366F1,#8B5CF6)' }}
                 >
                   Post Ad
                 </button>
@@ -173,8 +174,8 @@ const Navbar = ({ setShowLogin, authed, onLogout }) => {
                 onClick={() => {
                   typeof setShowLogin === 'function' ? setShowLogin(true) : navigate('/login')
                 }}
-                className="px-3 sm:px-4 py-2 text-xs sm:text-sm rounded-lg text-white transition-colors whitespace-nowrap"
-                style={{backgroundColor: '#2563EB'}}
+                className="px-3 sm:px-4 py-2 text-xs sm:text-sm rounded-lg text-white transition-opacity hover:opacity-90 whitespace-nowrap font-semibold"
+                style={{ background: 'linear-gradient(135deg,#6366F1,#8B5CF6)' }}
               >
                 Login
               </button>

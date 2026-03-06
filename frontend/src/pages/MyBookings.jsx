@@ -115,12 +115,12 @@ function MyBookings() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-primary py-16 mb-8 animate-fadeInUp">
-        <div className="max-w-6xl mx-auto px-6 md:px-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
-            My Bookings
-          </h1>
-          <p className="text-white/90 text-lg">Manage and track your car rental reservations</p>
+      <section className="py-14 mb-8 animate-fadeInUp relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#0f0c29 0%,#1a1a4e 60%,#2d1b69 100%)' }}>
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 30% 50%, #6366f1 0%, transparent 50%), radial-gradient(circle at 75% 30%, #7c3aed 0%, transparent 40%)' }} />
+        <div className="relative max-w-6xl mx-auto px-6 md:px-10 text-center">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4" style={{ background: 'rgba(99,102,241,0.2)', color: '#a5b4fc' }}>Your Reservations</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3">My Bookings</h1>
+          <p style={{ color: 'rgba(255,255,255,0.7)' }} className="text-lg">Manage and track your car rental reservations</p>
         </div>
       </section>
 

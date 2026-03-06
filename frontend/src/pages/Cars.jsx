@@ -203,10 +203,12 @@ function Cars() {
   return (
     <div className="min-h-screen bg-gray-50 animate-fadeIn">
       {/* Hero Section */}
-      <section className="bg-gradient-primary py-12 mb-8 animate-fadeInUp">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">Find Your Perfect Ride</h1>
-          <p className="text-white/90 text-lg">Explore our extensive collection of vehicles</p>
+      <section className="py-14 mb-8 animate-fadeInUp relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)' }}>
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #6366f1 0%, transparent 50%), radial-gradient(circle at 80% 20%, #ec4899 0%, transparent 40%)' }} />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4" style={{ background: 'rgba(99,102,241,0.2)', color: '#a5b4fc' }}>Browse Fleet</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3">Find Your Perfect Ride</h1>
+          <p className="text-white/70 text-lg">Explore our extensive collection of vehicles across Sri Lanka</p>
         </div>
       </section>
 

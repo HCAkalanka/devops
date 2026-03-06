@@ -25,16 +25,23 @@ const FeaturedCars = ({ limit = 4, title = "Featured Cars" }) => {
 
   if (loading) {
     return (
-      <section className="py-10">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6">{title}</h2>
+      <section className="py-16" style={{ background: 'linear-gradient(180deg,#ffffff 0%,#f5f3ff 100%)' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <div className="h-4 w-32 bg-indigo-100 rounded-full mb-3 animate-pulse" />
+              <div className="h-8 w-56 bg-gray-200 rounded-xl animate-pulse" />
+            </div>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="border rounded-xl shadow-md p-4 bg-white animate-pulse">
-                <div className="bg-gray-200 rounded-lg h-48 mb-3"></div>
-                <div className="h-6 bg-gray-200 rounded mb-2"></div>
-                <div className="h-4 bg-gray-200 rounded mb-2 w-2/3"></div>
-                <div className="h-6 bg-gray-200 rounded mt-2 w-1/3"></div>
+              <div key={i} className="rounded-3xl overflow-hidden bg-white shadow-sm animate-pulse">
+                <div className="bg-gray-200 h-52 w-full"></div>
+                <div className="p-5 space-y-3">
+                  <div className="h-5 bg-gray-200 rounded-lg w-3/4"></div>
+                  <div className="h-4 bg-gray-100 rounded-lg w-1/2"></div>
+                  <div className="h-8 bg-indigo-100 rounded-xl w-1/2"></div>
+                </div>
               </div>
             ))}
           </div>
@@ -44,19 +51,22 @@ const FeaturedCars = ({ limit = 4, title = "Featured Cars" }) => {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white via-gray-50 to-white">
+    <section className="py-16" style={{ background: 'linear-gradient(180deg,#ffffff 0%,#f5f3ff 60%,#fdf4ff 100%)' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-10 animate-fadeInUp">
+        <div className="flex items-end justify-between mb-12 animate-fadeInUp">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-2">{title}</h2>
-            <p className="text-gray-600">Explore our handpicked selection of premium vehicles</p>
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-3 bg-indigo-50 text-indigo-600">
+              Top Picks
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">{title}</h2>
+            <p className="text-gray-500 mt-2 text-sm">Handpicked selection of our premium vehicles</p>
           </div>
           <Link
             to="/cars"
-            className="btn-primary btn-sm hover-scale hidden sm:inline-flex"
-            aria-label="View all cars"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
+            style={{ background: 'linear-gradient(135deg,#6366F1,#8B5CF6)' }}
           >
-            View All →
+            View All <span>→</span>
           </Link>
         </div>
 

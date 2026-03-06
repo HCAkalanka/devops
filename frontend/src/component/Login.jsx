@@ -61,7 +61,7 @@ const Login = ({ showLogin, setShowLogin, onAuth }) => {
             backgroundImage: "url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80')"
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/95 via-purple-600/90 to-pink-600/95"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/75 via-purple-600/65 to-pink-600/70"></div>
           <div className="relative z-10 flex flex-col justify-center px-12 text-white">
             <div className="mb-6">
               <div className="inline-block p-3 rounded-2xl bg-white/20 backdrop-blur-sm mb-4">

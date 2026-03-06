@@ -78,16 +78,18 @@ const Home = () => {
   return (
     <div className="font-sans text-gray-800 animate-fadeIn">
       {/* Hero */}
-      <section
-        className="relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%)' }}
-      >
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB4PSIwIiB5PSIwIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==')] opacity-30"></div>
+      <section className="relative overflow-hidden min-h-[580px] md:min-h-[680px]">
+        {/* Background image — fully visible as the base layer */}
         <img
           src={assets.hero_bg}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none select-none mix-blend-overlay"
-          loading="lazy"
+          alt="Hero background car"
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none select-none"
+          loading="eager"
+        />
+        {/* Semi-transparent gradient overlay so text stays readable */}
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(120deg, rgba(30,27,75,0.82) 0%, rgba(88,28,135,0.72) 55%, rgba(157,23,77,0.65) 100%)' }}
         />
         <div className="relative mx-auto max-w-7xl px-6 md:px-10 lg:px-14 xl:px-20 py-24 md:py-32">
           <div className="max-w-3xl">
@@ -179,46 +181,58 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+        {/* Bottom wave fade to white */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none" />
       </section>
 
       {/* Featured */}
       <FeaturedCars />
 
       {/* How It Works */}
-      <section className="py-14 md:py-20 bg-light">
+      <section className="py-16 md:py-24" style={{ background: 'linear-gradient(180deg, #0f0c29 0%, #1a1a4e 100%)' }}>
         <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">How It Works</h2>
-            <div className="grid gap-8 md:grid-cols-3">
-              {steps.map((s, i) => (
-                <div
-                  key={i}
-                  className="group rounded-2xl bg-white p-6 border border-gray-100 shadow-sm hover:shadow-md transition"
-                >
-                  <div className="h-14 w-14 rounded-xl flex items-center justify-center mb-5 bg-blue-50">
-                    <img src={s.icon} alt="" className="h-7 w-7" />
-                  </div>
-                  <h3 className="font-semibold mb-2">{s.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{s.desc}</p>
+          <div className="text-center mb-14">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4" style={{ background: 'rgba(99,102,241,0.2)', color: '#a5b4fc' }}>Simple Process</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white">How It Works</h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            {steps.map((s, i) => (
+              <div
+                key={i}
+                className="group relative rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2"
+                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+              >
+                <div className="absolute -top-4 -left-2 w-10 h-10 rounded-xl flex items-center justify-center text-lg font-black text-white" style={{ background: 'linear-gradient(135deg,#6366F1,#EC4899)' }}>
+                  {i + 1}
                 </div>
-              ))}
-            </div>
+                <div className="h-14 w-14 rounded-2xl flex items-center justify-center mb-6 mt-2" style={{ background: 'rgba(99,102,241,0.2)' }}>
+                  <img src={s.icon} alt="" className="h-7 w-7 brightness-200" />
+                </div>
+                <h3 className="font-bold text-lg text-white mb-2">{s.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.65)' }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Benefits */}
-      <section className="py-14 md:py-20 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">Why Choose Us</h2>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="text-center mb-14">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4 bg-indigo-50 text-indigo-600">Our Advantages</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Why Choose Us</h2>
+            <p className="text-gray-500 mt-2 max-w-lg mx-auto text-sm">Everything you need for a seamless rental experience, all in one place.</p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {benefits.map((b, i) => (
-              <div key={i} className="flex gap-4">
-                <div className="h-12 w-12 flex items-center justify-center rounded-xl bg-blue-50">
+              <div key={i} className="group flex gap-4 p-6 rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-lg transition-all duration-300 bg-white hover:-translate-y-1">
+                <div className="shrink-0 h-12 w-12 flex items-center justify-center rounded-2xl" style={{ background: 'linear-gradient(135deg, #EEF2FF, #F5F3FF)' }}>
                   <img src={b.icon} alt="" className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">{b.title}</h3>
-                  <p className="text-sm text-gray-600 mt-1">{b.desc}</p>
+                  <h3 className="font-bold text-gray-900 mb-1">{b.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{b.desc}</p>
                 </div>
               </div>
             ))}
@@ -227,18 +241,32 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-14 md:py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+      <section className="py-16 md:py-24" style={{ background: 'linear-gradient(135deg, #f0f4ff 0%, #fdf4ff 100%)' }}>
         <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">What Renters Say</h2>
+          <div className="text-center mb-14">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4 bg-pink-50 text-pink-600">Reviews</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">What Renters Say</h2>
+          </div>
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="rounded-2xl bg-white p-6 border border-gray-100 shadow-sm hover:shadow-md transition flex flex-col"
+                className="group rounded-3xl bg-white p-8 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border border-white hover:-translate-y-1"
               >
-                <p className="text-sm text-gray-700 leading-relaxed flex-grow">“{t.text}”</p>
-                <div className="mt-4 text-xs font-medium text-gray-500">
-                  {t.name} · {t.city}
+                <div className="flex gap-1 mb-4">
+                  {[1,2,3,4,5].map(s => (
+                    <svg key={s} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  ))}
+                </div>
+                <p className="text-gray-700 leading-relaxed flex-grow italic">"{t.text}"</p>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-9 w-9 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: 'linear-gradient(135deg,#6366F1,#EC4899)' }}>
+                    {t.name[0].toUpperCase()}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-gray-900">{t.name}</div>
+                    <div className="text-xs text-gray-400">{t.city}</div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -247,67 +275,83 @@ const Home = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 relative">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-600 to-blue-600" />
-        <div className="mx-auto max-w-4xl text-center px-6 md:px-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to List Your Vehicle?</h2>
-          <p className="text-white/80 mb-8 text-sm md:text-base">
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%)' }} />
+        {/* Decorative blobs */}
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #fff 0%, transparent 70%)' }} />
+        <div className="absolute -bottom-10 -left-10 w-60 h-60 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #fff 0%, transparent 70%)' }} />
+        <div className="relative mx-auto max-w-4xl text-center px-6 md:px-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-sm font-semibold" style={{ background: 'rgba(255,255,255,0.2)', color: '#fff' }}>
+            <span>🚗</span> Earn with your vehicle
+          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">Ready to List Your Vehicle?</h2>
+          <p className="text-white/80 mb-10 text-base md:text-lg max-w-xl mx-auto">
             Earn by sharing your car. Simple onboarding. Full control over pricing and availability.
           </p>
           <Link
             to="/post"
-            className="inline-flex items-center px-7 py-3 rounded-xl text-white font-semibold shadow-lg hover:shadow-xl transition"
-            style={{ backgroundColor: '#1D4ED8' }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-indigo-700 shadow-2xl hover:shadow-white/30 transition-all duration-300 hover:-translate-y-1"
+            style={{ background: '#fff' }}
           >
             Post Your Ad
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-12">
+      <footer style={{ background: '#0d0b1e' }} className="text-gray-400 py-14">
         <div className="mx-auto max-w-7xl px-6 md:px-10 grid gap-10 md:grid-cols-4">
           <div>
-            <img src={assets.logo} alt="Logo" className="h-9 mb-4" />
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <img src={assets.logo} alt="Logo" className="h-9 mb-4 brightness-200" />
+            <p className="text-sm leading-relaxed text-gray-500">
               A modern platform to rent or list vehicles across Sri Lanka.
             </p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4 text-white text-sm">Explore</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/cars" className="hover:text-white">All Cars</Link></li>
-              <li><Link to="/dashboard" className="hover:text-white">Dashboard</Link></li>
-              <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4 text-white text-sm">Support</h4>
-            <ul className="space-y-2 text-sm">
-              <li><span className="cursor-default">Help Center</span></li>
-              <li><span className="cursor-default">Safety</span></li>
-              <li><span className="cursor-default">Terms & Privacy</span></li>
-            </ul>
-          </div>
-            <div>
-              <h4 className="font-semibold mb-4 text-white text-sm">Stay Updated</h4>
-              <form className="flex flex-col gap-3">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 text-sm outline-none focus:border-blue-500"
-                />
-                <button
-                  type="submit"
-                  className="px-3 py-2 rounded-lg text-sm font-medium text-white"
-                  style={{ backgroundColor: '#1D4ED8' }}
-                >
-                  Subscribe
-                </button>
-              </form>
+            <div className="flex gap-3 mt-5">
+              {[assets.facebook_logo, assets.instagram_logo, assets.twitter_logo].map((icon, i) => (
+                <div key={i} className="w-8 h-8 rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                  <img src={icon} alt="" className="w-4 h-4 brightness-200 opacity-70" />
+                </div>
+              ))}
             </div>
+          </div>
+          <div>
+            <h4 className="font-bold mb-4 text-white text-sm tracking-wide">Explore</h4>
+            <ul className="space-y-3 text-sm">
+              <li><Link to="/cars" className="hover:text-white transition-colors">All Cars</Link></li>
+              <li><Link to="/post" className="hover:text-white transition-colors">Post Ad</Link></li>
+              <li><Link to="/mybookings" className="hover:text-white transition-colors">My Bookings</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold mb-4 text-white text-sm tracking-wide">Support</h4>
+            <ul className="space-y-3 text-sm">
+              <li><span className="cursor-default hover:text-white transition-colors">Help Center</span></li>
+              <li><span className="cursor-default hover:text-white transition-colors">Safety</span></li>
+              <li><span className="cursor-default hover:text-white transition-colors">Terms & Privacy</span></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold mb-4 text-white text-sm tracking-wide">Stay Updated</h4>
+            <p className="text-xs text-gray-500 mb-3">Get the latest deals and news straight to your inbox.</p>
+            <form className="flex flex-col gap-3">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                className="px-4 py-2.5 rounded-xl text-sm outline-none text-white placeholder-gray-600 focus:ring-2 focus:ring-indigo-500"
+                style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}
+              />
+              <button
+                type="submit"
+                className="px-4 py-2.5 rounded-xl text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                style={{ background: 'linear-gradient(135deg,#6366F1,#EC4899)' }}
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
-        <div className="mt-10 text-center text-xs text-gray-500">
+        <div className="mt-10 border-t pt-6 text-center text-xs" style={{ borderColor: 'rgba(255,255,255,0.07)', color: '#4b5563' }}>
           © {new Date().getFullYear()} CarRental. All rights reserved.
         </div>
       </footer>

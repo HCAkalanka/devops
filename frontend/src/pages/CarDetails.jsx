@@ -65,15 +65,16 @@ function CarDetails() {
   return (
     <div className='min-h-screen bg-gray-50 animate-fadeIn'>
       {/* Hero Section */}
-      <section className='relative h-[320px] bg-gradient-primary flex items-center justify-center overflow-hidden'>
-        <div className='absolute inset-0 bg-black/20'></div>
+      <section className='relative h-[280px] flex items-center justify-center overflow-hidden' style={{ background: 'linear-gradient(135deg,#0f0c29 0%,#302b63 60%,#24243e 100%)' }}>
+        <div className='absolute inset-0 opacity-25' style={{ backgroundImage: 'radial-gradient(circle at 30% 60%, #6366f1 0%, transparent 50%), radial-gradient(circle at 80% 30%, #ec4899 0%, transparent 40%)' }} />
         <div className='relative z-10 text-center px-4 animate-fadeInUp'>
-          <h1 className='text-white text-4xl md:text-5xl font-bold capitalize mb-3'>
+          <span className='inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4' style={{ background: 'rgba(99,102,241,0.25)', color: '#a5b4fc' }}>Vehicle Details</span>
+          <h1 className='text-white text-4xl md:text-5xl font-extrabold capitalize mb-3'>
             {car?.vehicle?.brand} {car?.vehicle?.model}
           </h1>
-          <p className='text-white/90 text-lg'>{car?.vehicle?.type} • {car?.vehicle?.year || 'N/A'}</p>
+          <p style={{ color: 'rgba(255,255,255,0.65)' }} className='text-lg capitalize'>{car?.vehicle?.type} • {car?.vehicle?.year || 'N/A'}</p>
         </div>
-        <div className='absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent'></div>
+        <div className='absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-50 to-transparent'></div>
       </section>
 
       {/* Main Content */}

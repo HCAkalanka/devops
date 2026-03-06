@@ -126,18 +126,36 @@ function Booking() {
   };
 
   if (!car) {
-    return <div>Loading...</div>; // Show a loading state while fetching data
+    return (
+      <div className="flex items-center justify-center min-h-screen" style={{ background: 'linear-gradient(135deg,#f0f4ff 0%,#fdf4ff 100%)' }}>
+        <div className="text-center animate-fadeIn">
+          <div className="spinner mx-auto mb-4"></div>
+          <p className="text-gray-600 text-lg font-medium">Loading vehicle details...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50/30 to-pink-50/30 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen p-4 sm:p-6 lg:p-8" style={{ background: 'linear-gradient(135deg,#f0f4ff 0%,#fdf4ff 100%)' }}>
+      {/* Page header */}
+      <div className="max-w-6xl mx-auto mb-8">
+        <div className="rounded-3xl px-8 py-10 relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#0f0c29 0%,#302b63 60%,#24243e 100%)' }}>
+          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, #ec4899 0%, transparent 50%)' }} />
+          <div className="relative">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-3" style={{ background: 'rgba(99,102,241,0.25)', color: '#a5b4fc' }}>Secure Booking</span>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-1">{car.brand} {car.model}</h1>
+            <p style={{ color: 'rgba(255,255,255,0.6)' }}>Complete your reservation below</p>
+          </div>
+        </div>
+      </div>
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         
         {/* Left Column: Booking Form */}
         <div className="md:col-span-2">
           <div className="card-elevated p-8 animate-fadeIn">
-            <h1 className="text-4xl font-black mb-2 bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">Booking Details</h1>
-            <p className="text-gray-600 mb-8">Fill in your information to complete the reservation</p>
+            <h2 className="text-2xl font-extrabold mb-2 bg-gradient-to-r from-indigo-600 to-pink-600 bg-clip-text text-transparent">Booking Details</h2>
+            <p className="text-gray-500 mb-8">Fill in your information to complete the reservation</p>
             
             <form onSubmit={handleSubmit} className="space-y-8">
               
@@ -209,7 +227,7 @@ function Booking() {
             <div className="space-y-3">
                 <div className="flex justify-between text-gray-600">
                     <span>Price per day</span>
-                    <span>${car.pricePerDay}</span>
+                    <span>LKR {Number(car.pricePerDay).toLocaleString('en-LK')}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                     <span>Number of days</span>
@@ -217,11 +235,11 @@ function Booking() {
                 </div>
                 <div className="flex justify-between text-gray-600">
                     <span>Subtotal</span>
-                    <span>${priceDetails.subtotal}</span>
+                    <span>LKR {Number(priceDetails.subtotal).toLocaleString('en-LK')}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                     <span>Taxes & Fees (10%)</span>
-                    <span>${priceDetails.taxes}</span>
+                    <span>LKR {Number(priceDetails.taxes).toLocaleString('en-LK')}</span>
                 </div>
             </div>
 
@@ -229,7 +247,7 @@ function Booking() {
 
             <div className="flex justify-between text-2xl font-bold text-gray-800">
                 <span>Total</span>
-                <span>${priceDetails.total}</span>
+                <span>LKR {Number(priceDetails.total).toLocaleString('en-LK')}</span>
             </div>
           </div>
         </div>
