@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useState, useCallback } from 'react';
 
 const PostAdContext = createContext();
 
@@ -23,4 +23,5 @@ export const PostAdProvider = ({ children }) => {
   );
 };
 
-export const usePostAd = () => useContext(PostAdContext);
+// eslint-disable-next-line react-refresh/only-export-components
+export const usePostAd = () => React.useContext(PostAdContext);

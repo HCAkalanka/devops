@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { assets, menuLinks } from '../assets/assets'
 import { upgradeToOwner } from '../api/users'
 
-const Navbar = ({ setShowLogin, authed, onLogout }) => {
+const Navbar = ({ setShowLogin, onLogout }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
@@ -30,7 +30,7 @@ const Navbar = ({ setShowLogin, authed, onLogout }) => {
       const data = JSON.parse(atob(payload))
       return data.role || null
     } catch { return null }
-  }, [forceUpdate])
+  }, [])
 
   // Handle shadow/background change on scroll (for transparent home header)
   useEffect(() => {
@@ -160,7 +160,7 @@ const Navbar = ({ setShowLogin, authed, onLogout }) => {
                 <button
                   onClick={() => {
                     onLogout?.()
-                    try { localStorage.removeItem('token') } catch {}
+                    try { localStorage.removeItem('token') } catch { /* ignore */ }
                     setForceUpdate(v => v + 1)
                     setTimeout(() => navigate('/'), 0)
                   }}
@@ -265,7 +265,7 @@ const Navbar = ({ setShowLogin, authed, onLogout }) => {
                         setOpen(false)
                         await upgradeToOwner()
                         setForceUpdate(v => v + 1)
-                      } catch {}
+                      } catch { /* ignore */ }
                     }}
                     className="w-full px-4 py-2 text-sm border border-borderColor rounded-lg text-gray-800"
                   >
@@ -276,7 +276,7 @@ const Navbar = ({ setShowLogin, authed, onLogout }) => {
                   onClick={() => {
                     setOpen(false)
                     onLogout?.()
-                    try { localStorage.removeItem('token') } catch {}
+                    try { localStorage.removeItem('token') } catch { /* ignore */ }
                     setForceUpdate(v => v + 1)
                     navigate('/')
                   }}

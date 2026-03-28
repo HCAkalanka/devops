@@ -40,13 +40,6 @@ import car_image1 from "./car_image1.png"
 import car_image2 from "./car_image2.png"
 import car_image3 from "./car_image3.png"
 import car_image4 from "./car_image4.png"
-import hero_bg from "./banner_car_image.png"
-import calendar_icon from "./calendar_icon_colored.svg"
-import key_icon from "./car_icon.svg"
-import support_icon from "./users_icon.svg"
-import shield_icon from "./cautionIconColored.svg"
-import money_icon from "./tick_icon.svg"
-import refresh_icon from "./arrow_icon.svg"
 export const cityList = ['New York', 'Los Angeles', 'Houston', 'Chicago']
 
 export const assets = {
@@ -101,13 +94,6 @@ export const assets = {
     car_image2,
     car_image3,
     car_image4,
-    hero_bg,
-    calendar_icon,
-    key_icon,
-    support_icon,
-    shield_icon,
-    money_icon,
-    refresh_icon
 }
 
 export const menuLinks = [

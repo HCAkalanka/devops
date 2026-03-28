@@ -12,7 +12,7 @@ import {
   Camera,
   ArrowUpDown,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { listListings, getListing } from "../api/listings";
 import { listCars as listRawCars } from "../api/cars";
 import { listCities } from "../api/cities";
@@ -47,7 +47,7 @@ function Cars() {
       try {
         const data = await listCities({ limit: 200 });
         setCities(data || []);
-      } catch {}
+      } catch { /* ignore */ }
     })();
   }, []);
 

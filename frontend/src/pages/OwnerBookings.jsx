@@ -6,7 +6,7 @@ function OwnerBookings() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [selectedBooking, setSelectedBooking] = useState(null);
+  
 
   useEffect(() => {
     (async () => {
@@ -14,7 +14,7 @@ function OwnerBookings() {
         setLoading(true);
         const res = await api.get('/bookings/owner');
         setItems(Array.isArray(res.data) ? res.data : []);
-      } catch (e) {
+      } catch {
         setError('Failed to load owner bookings');
       } finally {
         setLoading(false);

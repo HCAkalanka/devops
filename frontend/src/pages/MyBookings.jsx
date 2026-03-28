@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { listMyBookings, cancelBooking } from '../api/bookings';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { Calendar, MapPin, DollarSign, Clock, CheckCircle, XCircle, AlertCircle, Car } from 'lucide-react';
 
 function MyBookings() {
@@ -14,7 +14,7 @@ function MyBookings() {
       setLoading(true);
       const data = await listMyBookings();
       setItems(Array.isArray(data) ? data : []);
-    } catch (e) {
+    } catch {
       setError('Failed to load bookings');
     } finally {
       setLoading(false);
@@ -30,7 +30,7 @@ function MyBookings() {
       setCancellingId(id);
       await cancelBooking(id);
       await load();
-    } catch (e) {
+    } catch {
       alert('Failed to cancel booking');
     } finally {
       setCancellingId(null);
