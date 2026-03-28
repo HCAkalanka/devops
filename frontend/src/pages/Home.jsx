@@ -94,10 +94,10 @@ const Home = () => {
         <div className="relative mx-auto max-w-7xl px-6 md:px-10 lg:px-14 xl:px-20 py-24 md:py-32">
           <div className="max-w-3xl">
             <div className="inline-block mb-4 px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-semibold">
-               Welcome to Our Premium Car Rental
+               Welcome to Our Car Rental
             </div>
             <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6 leading-tight">
-              Your Perfect Ride<br/>
+              Welcome to Our Premium Car Rental<br/>
               <span className="text-gradient bg-gradient-to-r from-yellow-200 to-pink-200 bg-clip-text text-transparent">Awaits</span>
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed">
